@@ -1,61 +1,66 @@
+window.onload = app;
 
-    window.onload = app;
+// runs when the DOM is loaded
+function app() {
 
-    // runs when the DOM is loaded
-    function app(){
+    // load some scripts (uses promises :D)
+    loader.load({
+            url: "./bower_components/jquery/dist/jquery.min.js"
+        }, {
+            url: "./bower_components/lodash/dist/lodash.min.js"
+        }, {
+            url: "./bower_components/backbone/backbone.js"
+        }, {
+            url: "./dist/style.css"
+        },
 
-        // load some scripts (uses promises :D)
-        loader.load(
-            {url: "./bower_components/jquery/dist/jquery.min.js"},
-            {url: "./bower_components/lodash/dist/lodash.min.js"},
-            {url: "./bower_components/backbone/backbone.js"},
-            {url: "./dist/style.css"},
+        // todos
+        {
+            url: "./js/models/todo.js"
+        }, {
+            url: "./js/collections/todos.js"
+        },
 
-            // todos
-            {url: "./js/models/todo.js"},
-            {url: "./js/collections/todos.js"},
+        // todolists
+        {
+            url: "./js/models/todolist.js"
+        }, {
+            url: "./js/collections/todolists.js"
+        },
 
-            // todolists
-            {url: "./js/models/todolist.js"},
-            {url: "./js/collections/todolists.js"},
+        // views
+        {
+            url: "./js/views/appview.js"
+        }, {
+            url: "./js/views/todolistsview.js"
+        }, {
+            url: "./js/views/todolistview.js"
+        }, {
+            url: "./js/views/todosview.js"
+        }, {
+            url: "./js/views/todoview.js"
+        },
 
-            // views
-            {url: "./js/views/appview.js"},
-            {url: "./js/views/todolistsview.js"},
-            {url: "./js/views/todolistview.js"},
-            {url: "./js/views/todosview.js"}
+        // routers
+        {
+            url: "./js/routers/todorouter.js"
+        }
 
-        ).then(function(){
-            _.templateSettings.interpolate = /{([\s\S]+?)}/g;
+    ).then(function() {
+        _.templateSettings.interpolate = /{([\s\S]+?)}/g;
 
-            // app level view
-            // - make document.body the container for appview
-            window.appview = new app.AppView();
+        var o = $({});
+        $.subscribe = function() {
+            o.on.apply(o, arguments);
+        };
+        $.unsubscribe = function() {
+            o.off.apply(o, arguments);
+        };
+        $.publish = function() {
+            o.trigger.apply(o, arguments);
+        };
 
-            // TodoLists Collection
-            var todolists = new app.TodoLists([
-                { name: "todolist #1" },
-                { name: "todolist #2" },
-                { name: "todolist #3" },
-                { name: "todolist #4" },
-                { name: "todolist #5" },
-                { name: "todolist #6" }
-            ])
+        var router = new app.TodoRouter();
+    })
 
-            // attached the TodoLists colelction to the TodoLists view
-            // - inside here, this will append a TodoList view for each model in the collection
-            var todolistsview = new app.TodoListsView({
-                collection: todolists
-            });
-
-            appview.$el.append( todolistsview.el );
-
-            var todosview = new app.TodosView();
-
-            appview.$el.append( todosview.el );
-
-            // start app?
-        })
-
-    }
-
+}

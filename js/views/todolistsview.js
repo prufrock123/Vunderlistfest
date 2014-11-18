@@ -16,9 +16,6 @@
                 self.$el.append("\n");
             })
             // 3. ... append a TodoListView(model)
-        },
-        initialize: function(){
-            this.render();
         }
     });
 

@@ -11,9 +11,10 @@
                 return "todos must be an instance of the Todos Collection."
             }
         },
-        initialize: function(){},
-        defaults: {
-            todos: new app.Todos()
+        initialize: function(){
+            if(!this.get('todos')){
+                this.set('todos', new app.Todos());
+            }
         }
     })
 
