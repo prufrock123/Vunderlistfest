@@ -4,18 +4,21 @@
 
     var TodoListsView = Backbone.View.extend({
         tagName: "div",
-        className: "todolists grid grid-2-400 grid-4-600 squarify-grid",
-        html: "<form><div><input type='text'></div><button>add</button></form>\n",
+        className: "toUndoTheTopToDosViewTheTopToDoForYouIsToUnDoThisClassEWWWWWW",
+        html: "<form><div class='todoListForm'><input type='text'></div><button>add</button></form><div class='todolists grid grid-2-400 grid-4-600 squarify-grid'></div>\n",
         render: function(){
-            this.el.innerHTML = this.html
+            
             // 1. empty out the container element (html is "")
-            // this.el.innerHTML = "";
+            this.el.innerHTML = this.html
+            this.$container = $(this.el.querySelector('.todolists'));
+            console.dir(this.$container)
             // 2. for each model in the collection
             var self = this;
             this.collection.forEach(function(m){
+                console.dir(self.$container)
                 var subview = new app.TodoListView({model: m});
-                self.$el.append(subview.el);
-                self.$el.append("\n");
+                self.$container.append(subview.el);
+                self.$container.append("\n");
             })
             // 3. ... append a TodoListView(model)
         },
@@ -26,15 +29,16 @@
             event.preventDefault();
             var newTodoList = { name: this.el.querySelector("input").value };
             this.collection.add(newTodoList);
-            this.render(this.collection);
+            this.render();
         },
         initialize: function(){
             var self = this;
             $.subscribe("todoList_deleted", function(error, model){
                 self.collection.remove(model)
-                self.render(self.collection);
+                self.render();
             })
         }
+        // collection: the todo-lists collection (big bucket)
     });
 
     app.TodoListsView = TodoListsView;

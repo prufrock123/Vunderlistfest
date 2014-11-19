@@ -67,14 +67,23 @@
  * active states for page views
  */
 
+.toUndoTheTopToDosViewTheTopToDoForYouIsToUnDoThisClassEWWWWWW {
+    display: none;
+}
+
 .todolists, .todos {
     display: none;
     max-width: 800px;
     margin: 0 auto;
 }
-.todolists.active, .todos.active {
+/*.todolists.active, .todos.active {
+    display: block;
+}*/
+
+.active, .active > * {
     display: block;
 }
+
 @keyframe fadeDown {
     0% {
         opacity: 0;
@@ -135,4 +144,21 @@
 
 .strikeOut {
     text-decoration: line-through;
+}
+
+.todoListForm input {
+    width: 100%;
+}
+
+form button {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 2%;
+}
+
+.todoListForm {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 2%;
 }

@@ -21,3 +21,11 @@
     app.TodoList = TodoList;
 
 })(window, undefined);
+
+
+// model number 1 todolist = 
+
+// { 
+//     name: "todolist #1",
+//     todos: new app.Todos()
+// }

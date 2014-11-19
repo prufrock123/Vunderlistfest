@@ -16,7 +16,7 @@
         events: {
             "click .delete": "removeMeList"
         },
-        removeMeList: function(event){
+        removeMeList: function(){
             $.publish("todoList_deleted", this.model);
         }
     });
