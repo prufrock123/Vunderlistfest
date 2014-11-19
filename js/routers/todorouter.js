@@ -10,10 +10,12 @@
         page1: function(){
             this.todolistsview.render();
 
+            console.dir(this.todolistsview);
             this.todolistsview.el.classList.add('active');
             this.todosview.el.classList.remove('active');
         },
         page2: function(id){
+            // console.dir(this);
             var todolistmodel = this.todolists.filter(function(model){
                 return model.cid === id;
             });
@@ -40,14 +42,17 @@
                 { name: "todolist #3" },
                 { name: "todolist #4" },
                 { name: "todolist #5" },
-                { name: "todolist #6" }
-            ])
+                { name: "todolist #6" },
+                { name: "todolist #7" },
+                { name: "todolist #8" }
+            ]);
+
             this.todolists.forEach(function(todolist){
                 // debugger;
                 for(var i = 0; i < 6; i++){
                     todolist.get('todos').add({ title: "todo #"+i });
                 }
-            })
+            });
 
             // app view
             this.appview = new app.AppView();

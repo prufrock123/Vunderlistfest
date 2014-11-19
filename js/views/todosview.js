@@ -14,7 +14,7 @@
 
             // for each item in the collection
             var self = this;
-            collection.forEach(function(m){
+            this.collection.forEach(function(m){
                 // ... append a new TodoView()
                 var subview = new app.TodoView({model: m});
                 self.$el.append(subview.el);
@@ -35,6 +35,10 @@
                 self.collection.remove(model)
                 self.render(self.collection);
             })
+            // $.subscribe("todo_markdone", function(error, x){
+            //     console.log(x)
+            //     x.classList.add('strikeOut')
+            // })
         }
     });
 

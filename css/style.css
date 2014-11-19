@@ -132,3 +132,7 @@
     content: "x";
     font-family: sans-serif;
 }
+
+.strikeOut {
+    text-decoration: line-through;
+}
